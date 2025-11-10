@@ -6,10 +6,19 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
-def import_data():
+import sys
+
+if len(sys.argv) > 1:
+	fname = sys.argv[1]
+else:
+	fname = None
+
+def import_data(fname = None):
 
     # Loading data
-    train_set = pd.read_csv("../data/twitter_training.csv", names=["Tweet Id","Entity","Sentiment","Tweet Content"])
+    if fname == None:
+    	fname = "../data/twitter_training.csv"
+    train_set = pd.read_csv(fname, names=["Tweet Id","Entity","Sentiment","Tweet Content"])
 
     # Cleaning data
     ## Remove rows with missing values
@@ -41,3 +50,10 @@ def import_data():
     figure.show()
 
     return train_set, candidates, tfidf_matrix
+    
+    
+if __name__ == '__main__':
+	train_set, candidates, tfidf_matrix = import_data("../data/twitter_training.csv")
+	train_set.to_csv("../data/twitter_training_clean.csv")
+	test_set, candidates, tfidf_matrix = import_data("../data/twitter_validation.csv")
+	test_set.to_csv("../data/twitter_validation_clean.csv")
