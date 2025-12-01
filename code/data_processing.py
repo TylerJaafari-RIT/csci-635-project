@@ -66,7 +66,7 @@ if __name__ == '__main__':
         os.mkdir("../data/clean/")
     # clean and generate training and validation sets
     train_set, tfidf_matrix = import_data("../data/twitter_training.csv")
-    train_set, val_set = train_test_split(train_set,test_size=1500)
+    train_set, val_set = train_test_split(train_set,test_size=1500, random_state=42)
     train_set.to_csv("../data/clean/twitter_training_clean.csv")
     val_set.to_csv("../data/clean/twitter_validation_clean.csv")
 
