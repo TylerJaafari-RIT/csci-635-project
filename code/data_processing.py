@@ -35,7 +35,7 @@ def import_data(fname = None):
 
 
     # Fitting tf-idf vectorizer
-    tfidf_vec = skl_text.TfidfVectorizer(max_features=200)
+    tfidf_vec = skl_text.TfidfVectorizer(min_df=0.002, max_df=0.6)
     tfidf_matrix = tfidf_vec.fit_transform(train_set["Tweet Content"])
 
     # Dimensionality reduction
