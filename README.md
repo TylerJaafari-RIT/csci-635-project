@@ -25,3 +25,27 @@ In this project, we investigated the relative performance of the DistilBERT Larg
     * RandomForest
 
 # Running the Project
+### Preparing Data
+To prepare the data, run
+```[bash]
+$ cd code/
+$ python3 data_processing.py
+$ python3 balance_data.py
+```
+to clean the data files and create the train, validation, and test data files as well as the balanced training data file in the `data/clean` folder. 
+
+### Traditional Models
+Each of the traditional models is contained within a jupyter notebook in the `code/` directory. To run any of them, open the corresponding notebook and select the `Run all cells` option. The four notebooks are:
+* `code/KNN.ipynb`
+* `code/SVC.ipynb`
+* `code/RandomForest.ipynb`
+* `code/AdaBoost.ipynb`
+
+### DistilBERT
+To run the DistilBERT model, first run all cells in the `BERT-data-process.ipynb` notebook using jupyter to create the labeled data in the `data/bert-ds-labeled` folder.
+
+Then to train the model, run all cells in the `BERT-train.ipynb` notebook using jupyter. As a warning, this took 30 minutes per epoch on a highly accelerated Google Colab instance, so it is recommended using the provided best model in `models/2neg6-checkpoint-90018` to evaluate performance unless re-training is absolutely necessary. The evaluation notebook is already programmed to use this by default.
+
+To evaluate the trained DistilBERT model, run all cells in the `BERT-evaluate.ipynb` notebook using jupyter. By default, this uses the provided best model in `models/2neg6-checkpoint-90018`, but this can be changed by modifying the `model_name` variable in the "Prediction/Load pretrained model" section of the notebook. 
+
+The last section of the `BERT-evaluate` notebook also plots the loss over epoch for the best training run, but uses the copy-and pasted trainer output (from the table displayed while running) - the `loss` variable in the "Plots" section needs to be changed to plot for a different run.
