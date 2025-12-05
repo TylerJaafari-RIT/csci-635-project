@@ -35,7 +35,7 @@ def import_data(fname = None):
 
 
     # Fitting tf-idf vectorizer
-    tfidf_vec = skl_text.TfidfVectorizer(max_features=200)
+    tfidf_vec = skl_text.TfidfVectorizer(min_df=0.002, max_df=0.6)
     tfidf_matrix = tfidf_vec.fit_transform(train_set["Tweet Content"])
 
     # Dimensionality reduction
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         os.mkdir("../data/clean/")
     # clean and generate training and validation sets
     train_set, tfidf_matrix = import_data("../data/twitter_training.csv")
-    train_set, val_set = train_test_split(train_set,test_size=1500)
+    train_set, val_set = train_test_split(train_set,test_size=1500, random_state=42)
     train_set.to_csv("../data/clean/twitter_training_clean.csv")
     val_set.to_csv("../data/clean/twitter_validation_clean.csv")
 
