@@ -5,3 +5,6 @@ matplotlib
 tqdm
 imblearn
 xarray
+transformers
+datasets
+evaluate
