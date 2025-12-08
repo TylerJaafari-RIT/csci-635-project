@@ -1,0 +1,6 @@
+VERY heavy use made of the various pages in the huggingface documentation.
+
+Several parts are significantly adapted from code present there and are marked as such in
+the notebook files.
+
+https://huggingface.co/docs/transformers/
